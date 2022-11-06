@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"path/filepath"
 
 	"github.com/mastercactapus/quicklink/internal/web"
 	"github.com/mastercactapus/quicklink/pkg/store"
@@ -20,14 +21,22 @@ func main() {
 	var s store.Store
 	switch {
 	case *pg != "":
+		log.Println("using postgres")
 		var err error
 		s, err = store.NewPostgres(*pg)
 		if err != nil {
 			log.Fatal(err)
 		}
 	case *txt != "":
-		s = store.NewTXTFile(*txt)
+		file, err := filepath.Abs(*txt)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Println("using text file:", file)
+		s = store.NewTXTFile(file)
 	default:
+		log.Println("using in-memory store")
 		s = store.NewMemStore()
 	}
 
