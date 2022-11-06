@@ -2,6 +2,8 @@
 
 An ultra-simple redirect service.
 
+![image](https://user-images.githubusercontent.com/595010/200184840-bd4afa18-02e2-4273-94d6-5d8fdb4c76f0.png)
+
 ## Usage
 
 The root URL (default is http://localhost:8080) has a form that lets you add a link and a destination.
@@ -37,5 +39,5 @@ Usage of quicklink:
 
 Requires Go >= 1.19.
 
-To start the server for development run `make start`
+To start the server for development run `make start` and then visit http://localhost:8080
 To build run `make`, the binary will be in `./build/bin/quicklink`
