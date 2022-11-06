@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickLink</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss@2.3.0/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/beercss@2.3.0/dist/cdn/beer.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@0.0.10/dist/cdn/material-dynamic-colors.min.js"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <main class="responsive padding">
+      {{if .Links}}
+      <form action="/_/add" method="POST">
+        <nav class="no-space">
+          <div class="max field label border left-round">
+            <input name="base" />
+            <label>Link</label>
+          </div>
+          <div class="max field label border no-round">
+            <input name="dest" />
+            <label>Destination</label>
+          </div>
+          <button type="submit" class="large right-round">Create</button>
+        </nav>
+      </form>
+      <div class="small-divider"></div>
+      <div class="grid">
+        {{end}} {{range .Links}}
+
+        <div class="s4">
+          <form action="/_/delete" method="POST">
+            <article id="{{.Base}}">
+              <h5>{{.Base}}</h5>
+              <p>{{.Dest}}</p>
+              <div class="max"></div>
+              <input type="hidden" name="base" value="{{.Base}}" />
+              <button type="submit" class="circle"><i>delete</i></button>
+            </article>
+          </form>
+        </div>
+        {{else}}
+        <div class="fill medium-height middle-align center-align">
+          <div class="center-align">
+            <h5>There are no configured links</h5>
+            <p>Create a new one</p>
+            <div class="space"></div>
+            <form action="/_/add" method="POST">
+              <nav class="no-space">
+                <div class="max field label border left-round">
+                  <input name="base" />
+                  <label>Link</label>
+                </div>
+                <div class="max field label border no-round">
+                  <input name="dest" />
+                  <label>Destination</label>
+                </div>
+                <button type="submit" class="large right-round">Create</button>
+              </nav>
+            </form>
+          </div>
+        </div>
+        {{end}} {{if .Links}}
+      </div>
+      {{end}}
+    </main>
+  </body>
+</html>
