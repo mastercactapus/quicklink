@@ -7,7 +7,6 @@ jobs:
     name: Release Go Binary
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
         goos: [linux, darwin, windows]
         goarch: [amd64, "386", arm, arm64]
