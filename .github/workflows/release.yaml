@@ -24,9 +24,7 @@ jobs:
       - uses: wangyoucao577/go-release-action@v1.32
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          go_version: ${{ matrix.go }}
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
-          goarm: 7
           build_flags: -trimpath
           md5sum: false
